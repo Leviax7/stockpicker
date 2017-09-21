@@ -1,28 +1,29 @@
 def stockpicker(stock_prices)
-prices = stock_prices
+prices_buy = stock_prices.clone
+prices_sell = stock_prices.clone
 best_profits = []
+profit_check=[]
 
-	prices.each { |buy| 
-		
-			profit_check = []	
-			prices.each { |sell|  
 
-				profit_check << (buy-sell) * -1
+	prices_buy.each { |buy| 
 
+			prices_sell.each { |sell|  
+
+				profit_check << sell-buy
 				}
-
 			best_profits << profit_check.max
-			prices.shift
+			prices_sell.shift
+			profit_check.clear
 			}
 buy_day = best_profits.index(best_profits.max)
-
+puts buy_day
 end
 
 
 
 #NOTES - IGNORE
 
-#stockpicker([17,3,6,9,15,8,6,1,10])
+stockpicker([30,15,3,55,2,14,26])
 
 #Take each day's price starting with day 0 and enumerate it over each day after it. Take the highest value from these pairs and 
 #store it in an array? Once you have all the buy/sell pairs take the highest value'd buy/sell as your output
