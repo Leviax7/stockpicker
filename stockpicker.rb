@@ -16,18 +16,15 @@ profit_check=[]
 			profit_check.clear
 			}
 buy_day = best_profits.index(best_profits.max)
-puts buy_day
+
+prices_sell = stock_prices.clone
+
+prices_sell.shift(buy_day + 1)
+
+sell_day = stock_prices.index(prices_sell.max)
+
+puts "For maximum profit be sure to buy your stocks on day #{buy_day} and to sell on day #{sell_day}."
+
 end
 
-
-
-#NOTES - IGNORE
-
-stockpicker([30,15,3,55,2,14,26])
-
-#Take each day's price starting with day 0 and enumerate it over each day after it. Take the highest value from these pairs and 
-#store it in an array? Once you have all the buy/sell pairs take the highest value'd buy/sell as your output
-#profit_check = [0,3,6,12,5,3,-2,7]
-
-#best_profits = [0, 12, x, x, x, x, x, x, x]
-#stock_prices.values_at(buy_day)
+stockpicker([1,3,6,12,17,1,4,5,18,20,3,6,4])
